@@ -180,7 +180,6 @@ public class UICell extends BorderPane implements EventHandler<MouseEvent> {
             } else {
                 num = Character.toString(number);
             }
-            lblNumber.setText(num);
         }
     }
 
@@ -191,7 +190,7 @@ public class UICell extends BorderPane implements EventHandler<MouseEvent> {
      */
     public void toggleNote(char number) {
         int i = Integer.parseInt(Character.toString(number));
-        notes[i] = !notes[1];
+        notes[i] = !notes[i];
         lblNotes[i].setVisible(notes[i]);
     }
 

@@ -334,6 +334,7 @@ public class SuDoKu extends Application implements SuDoKuUI {
      * @param id   ID number of the completed game.
      * @param time String holding the amount of time taken to win.
      */
+
     @Override
     public void celebrate(int id, String time) {
         DesktopAudio.getInstance().playCelebrate();
