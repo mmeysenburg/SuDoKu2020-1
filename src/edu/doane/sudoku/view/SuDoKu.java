@@ -70,8 +70,11 @@ public class SuDoKu extends Application implements SuDoKuUI {
         grid.setPrefSize(800, 800);
         grid.setMaxSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
         ((VBox) scene.getRoot()).getChildren().addAll(mnuBar, grid, statusBar);
+        primaryStage.setOnCloseRequest(e -> confirmExit());
+
         primaryStage.setScene(scene);
         primaryStage.setTitle("Doane SuDoKu");
+
 
         // display the UI
         primaryStage.show();
