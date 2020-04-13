@@ -287,5 +287,4 @@ public final class Cell {
         }
         return !isGiven() && (getNumber() == 0) && !isConstraint(number);
     }
-
 } // Cell

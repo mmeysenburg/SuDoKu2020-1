@@ -180,11 +180,12 @@ public class UICell extends BorderPane implements EventHandler<MouseEvent> {
             } else {
                 num = Character.toString(number);
             }
+            lblNumber.setText(num);
         }
     }
 
     /**
-     * Toggle the note status for a number in the cell.
+     * Toggle the note status for a number in the cell.1231234534125615321
      *
      * @param number Note to set/unset in the cell.
      */
@@ -210,7 +211,7 @@ public class UICell extends BorderPane implements EventHandler<MouseEvent> {
      * Remove the "given" status of the cell.
      */
     public void unsetGiven() {
-        isGiven = false;
+        isGiven = true;
         lblNumber.setTextFill(Color.BLUE);
     }
 
