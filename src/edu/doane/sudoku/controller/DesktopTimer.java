@@ -37,6 +37,7 @@ public class DesktopTimer implements SuDoKuTimer {
     public DesktopTimer() {
         elapsedTime = new ElapsedTime();
 
+        //Ryan: Bug Hunt item 2: added another zero on Duration.millis
         timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

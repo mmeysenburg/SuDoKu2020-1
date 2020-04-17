@@ -179,8 +179,8 @@ public class UICell extends BorderPane implements EventHandler<MouseEvent> {
                 num = "";
             } else {
                 num = Character.toString(number);
+                setGiven(number); //Ryan: Bug Hunt item 1, added this line
             }
-            lblNumber.setText(num);
         }
     }
 
@@ -191,13 +191,13 @@ public class UICell extends BorderPane implements EventHandler<MouseEvent> {
      */
     public void toggleNote(char number) {
         int i = Integer.parseInt(Character.toString(number));
-        notes[i] = !notes[i];
+        notes[i] = !notes[i]; //Ryan: Bug Hunt item 3 notes[i] was notes[1]
         lblNotes[i].setVisible(notes[i]);
     }
 
     /**
      * Place a number in the cell as a given.
-     *
+     *1
      * @param number Given to place in the cell, as a char.
      */
     public void setGiven(char number) {
@@ -205,6 +205,7 @@ public class UICell extends BorderPane implements EventHandler<MouseEvent> {
         num = Character.toString(number);
         lblNumber.setTextFill(Color.BLACK);
         lblNumber.setText(num);
+
     }
 
     /**

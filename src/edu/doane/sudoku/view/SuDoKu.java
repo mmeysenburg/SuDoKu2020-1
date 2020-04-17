@@ -70,7 +70,7 @@ public class SuDoKu extends Application implements SuDoKuUI {
         grid.setPrefSize(800, 800);
         grid.setMaxSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
         ((VBox) scene.getRoot()).getChildren().addAll(mnuBar, grid, statusBar);
-        primaryStage.setOnCloseRequest(e -> confirmExit());
+        primaryStage.setOnCloseRequest(e -> confirmExit()); //Ryan: Bug Hunt item 4. This line calls the confirmExit when Window's X button is pressed
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Doane SuDoKu");
@@ -341,7 +341,7 @@ public class SuDoKu extends Application implements SuDoKuUI {
     @Override
     public void celebrate(int id, String time) {
         DesktopAudio.getInstance().playCelebrate();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Winner!");
         alert.setHeaderText(null);
         alert.setContentText("Congratulations! You won game #" +
@@ -356,7 +356,7 @@ public class SuDoKu extends Application implements SuDoKuUI {
      */
     @Override
     public boolean confirmExit() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION); //Ryan: Bug Hunt item 5. Alert Type was Information.
         alert.setTitle("Quit Doane SuDoKu?");
         alert.setHeaderText(null);
         alert.setContentText("Are you sure you want to exit?");
