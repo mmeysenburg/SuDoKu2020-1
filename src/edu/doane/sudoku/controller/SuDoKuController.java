@@ -62,4 +62,6 @@ public interface SuDoKuController {
      * model and view grids.
      */
     void resetGrids();
+
+    void RageQuit();
 }

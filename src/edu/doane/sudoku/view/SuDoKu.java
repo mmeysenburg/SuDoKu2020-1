@@ -143,7 +143,7 @@ public class SuDoKu extends Application implements SuDoKuUI {
      */
     private void configureMenus() {
         Menu mnuGame, mnuHelp;
-        MenuItem mtmNewGame, mtmClearGrid , mtmExit, mtmAbout;
+        MenuItem mtmNewGame, mtmClearGrid , mtmExit, mtmAbout, mtmRageQuit;
 
         mnuGame = new Menu("_Game");
         mtmNewGame = new MenuItem("_New game");
@@ -168,9 +168,18 @@ public class SuDoKu extends Application implements SuDoKuUI {
             public void handle(ActionEvent event) {
                 controller.shutDown();
             }
+
         });
 
-        mnuGame.getItems().addAll(mtmNewGame, mtmClearGrid,
+        mtmRageQuit = new MenuItem("_Rage Quit");
+        mtmRageQuit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                controller.RageQuit();
+            }
+        });
+
+        mnuGame.getItems().addAll(mtmNewGame, mtmClearGrid, mtmRageQuit,
                 new SeparatorMenuItem(), mtmExit);
 
         mnuHelp = new Menu("_Help");
@@ -183,6 +192,7 @@ public class SuDoKu extends Application implements SuDoKuUI {
         });
 
         mnuHelp.getItems().addAll(mtmAbout);
+
 
         mnuBar = new MenuBar(mnuGame, mnuHelp);
     }
@@ -360,6 +370,22 @@ public class SuDoKu extends Application implements SuDoKuUI {
         alert.setTitle("Quit Doane SuDoKu?");
         alert.setHeaderText(null);
         alert.setContentText("Are you sure you want to exit?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        return result.get() == ButtonType.OK;
+    }
+
+    /**
+     * Ryan:
+     * Confirm that the player really wants to end the game but see the final puzzle
+     */
+    @Override
+    public boolean confirmRageQuit(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Rage Quit This Puzzle?");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to stop playing this puzzle?");
 
         Optional<ButtonType> result = alert.showAndWait();
 

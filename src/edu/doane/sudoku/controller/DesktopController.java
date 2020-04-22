@@ -1,8 +1,10 @@
 package edu.doane.sudoku.controller;
 
+import edu.doane.sudoku.model.FactoryGrid;
 import edu.doane.sudoku.model.Game;
 import edu.doane.sudoku.model.GameGrid;
 import edu.doane.sudoku.persistence.Persistence;
+import edu.doane.sudoku.view.SuDoKu;
 import edu.doane.sudoku.view.SuDoKuUI;
 
 /**
@@ -32,6 +34,7 @@ public class DesktopController implements SuDoKuController {
      * GameGrid currently being played.
      */
     private GameGrid grid;
+
 
     /**
      * Flag indicating whether we've celebrated a win for this game
@@ -225,4 +228,28 @@ public class DesktopController implements SuDoKuController {
         }
     }
 
+
+    /***
+     * Ryan: RageQuit
+     * Called when the player hits the "Rage Quit" button in the menu
+     * Auto completes the puzzle by calling game.getSolved()
+     */
+    @Override
+    public void RageQuit() {
+        //They won't have a score
+        timer.stopTimer();
+
+        if (view.confirmRageQuit()){
+            grid = game.getSolved();
+            for (int i = 0; i < 9; i++){
+                for (int j = 0; j < 9; j++){
+                    view.setGiven(i, j, grid.getNumber(i, j));
+                }
+            }
+            view.confirmNewGame();
+        }else{
+            timer.startTimer();
+        }
+
+    }
 }

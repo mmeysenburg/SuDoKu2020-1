@@ -81,6 +81,12 @@ public interface SuDoKuUI {
     boolean confirmNewGame();
 
     /**
+     * confirm that the player wants to stop playing the current puzzle
+     * @return True if the player is done and wants to see the result, false otherwise
+     */
+    boolean confirmRageQuit();
+
+    /**
      * Display the modal "About Doane SuDoKu" dialog box.
      */
     void displayAbout();

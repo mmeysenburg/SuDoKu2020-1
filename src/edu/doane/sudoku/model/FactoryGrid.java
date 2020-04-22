@@ -8,7 +8,7 @@ import java.util.LinkedList;
  * @author Mark M. Meysenburg
  * @version 05/26/2014
  */
-public final class FactoryGrid extends GameGrid {
+public class FactoryGrid extends GameGrid {
 
     /**
      * Construct a new grid, with all cells set to 0 (blank).
