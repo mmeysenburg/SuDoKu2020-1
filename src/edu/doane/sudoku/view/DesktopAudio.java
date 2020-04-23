@@ -50,6 +50,8 @@ public class DesktopAudio {
      */
     private MediaPlayer playNumberMedia;
 
+    private MediaPlayer punishSound;
+
     /**
      * Private default constructor prevents users from instantiating.
      */
@@ -84,6 +86,11 @@ public class DesktopAudio {
             Media media6 = new Media(ClassLoader.getSystemResource("resources/audio/play-number.wav").toURI().toString());
             playNumberMedia = new MediaPlayer(media6);
             playNumberMedia.setAutoPlay(false);
+
+            Media media7 = new Media(ClassLoader.getSystemResource("resources/audio/punishSound.wav").toURI().toString());
+            punishSound = new MediaPlayer(media7);
+            punishSound.setAutoPlay(false);
+
 
         } catch (Exception exception) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -169,6 +176,18 @@ public class DesktopAudio {
             playNumberMedia.stop();
             playNumberMedia.setStartTime(Duration.seconds(0));
             playNumberMedia.play();
+        }
+    }
+
+    /**
+     * Play the punish sound
+     */
+
+    public void playPunish(){
+        if(punishSound != null){
+            punishSound.stop();
+            punishSound.setStartTime(Duration.seconds(0));
+            punishSound.play();
         }
     }
 }

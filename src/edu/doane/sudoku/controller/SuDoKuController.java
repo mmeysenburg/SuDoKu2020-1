@@ -64,4 +64,8 @@ public interface SuDoKuController {
     void resetGrids();
 
     void RageQuit();
+
+    void getHint(int row, int col);
+
+
 }

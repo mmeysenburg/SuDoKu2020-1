@@ -23,18 +23,25 @@ public class UIStatusBar extends GridPane {
     Label lblNotesMode;
 
     /**
+     * Label displaying hint feature
+     */
+    Label lblHintFeature;
+
+    /**
      * Construct the status bar.
      */
     public UIStatusBar() {
         super();
 
-        // 2 columns, equally distributed
-        ColumnConstraints col1, col2;
+        // 3 columns, equally distributed
+        ColumnConstraints col1, col2, col3;
         col1 = new ColumnConstraints();
-        col1.setPercentWidth(50);
+        col1.setPercentWidth(33);
         col2 = new ColumnConstraints();
-        col2.setPercentWidth(50);
-        getColumnConstraints().addAll(col1, col2);
+        col2.setPercentWidth(33);
+        col3 = new ColumnConstraints();
+        col2.setPercentWidth(33);
+        getColumnConstraints().addAll(col1, col2, col3);
 
         lblTimer = new Label("0:00:00");
         add(lblTimer, 0, 0, 1, 1);
@@ -43,6 +50,10 @@ public class UIStatusBar extends GridPane {
         lblNotesMode = new Label("(N)otes mode: off");
         add(lblNotesMode, 1, 0, 1, 1);
         setHalignment(lblNotesMode, HPos.CENTER);
+
+        lblHintFeature = new Label ("Get (H)int for a 30 Second Penalty");
+        add(lblHintFeature, 2, 0,1, 1);
+        setHalignment(lblHintFeature, HPos.CENTER);
     }
 
     /**

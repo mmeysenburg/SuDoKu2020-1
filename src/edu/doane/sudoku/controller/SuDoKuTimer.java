@@ -34,10 +34,18 @@ public interface SuDoKuTimer {
     void setView(SuDoKuUI view);
 
     /**
+     * Add 30 seconds to the timer if the hint feature is called
+     */
+
+    public void hintPunish();
+
+    /**
      * Get a string representation of the timer.
      *
      * @return String representation of the current timer, in
      * hh:mm:ss format.
      */
     String toString();
+
+
 }

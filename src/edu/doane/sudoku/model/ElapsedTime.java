@@ -55,6 +55,10 @@ public class ElapsedTime {
         }
     }
 
+    public void hintPunish(){
+        seconds += 30;
+    }
+
     @Override
     /**
      * Get a string representation of the time, in the format "h:mm:ss".

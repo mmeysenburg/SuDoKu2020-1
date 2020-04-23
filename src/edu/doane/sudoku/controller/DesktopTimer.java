@@ -8,6 +8,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
 
+import javax.naming.TimeLimitExceededException;
+import java.sql.Time;
+
 /**
  * Timer for the desktop SuDoKu app. Uses the JavaFX Timeline class for keeping time.
  *
@@ -51,6 +54,11 @@ public class DesktopTimer implements SuDoKuTimer {
     @Override
     public void startTimer() {
         timeline.play();
+    }
+
+    @Override
+    public void hintPunish(){
+        elapsedTime.hintPunish();
     }
 
     @Override

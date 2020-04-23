@@ -4,6 +4,7 @@ import edu.doane.sudoku.model.FactoryGrid;
 import edu.doane.sudoku.model.Game;
 import edu.doane.sudoku.model.GameGrid;
 import edu.doane.sudoku.persistence.Persistence;
+import edu.doane.sudoku.view.DesktopAudio;
 import edu.doane.sudoku.view.SuDoKu;
 import edu.doane.sudoku.view.SuDoKuUI;
 
@@ -41,6 +42,8 @@ public class DesktopController implements SuDoKuController {
      * or not.
      */
     private boolean celebrated;
+
+    private int hintCounter;
 
     /**
      * Construct a new instance of this controller.
@@ -108,7 +111,7 @@ public class DesktopController implements SuDoKuController {
             // celebrate! and stop the timer
             celebrated = true;
             timer.stopTimer();
-            view.celebrate(game.getID(), timer.toString());
+            view.celebrate(game.getID(), hintCounter, timer.toString());
         }
     }
 
@@ -148,6 +151,39 @@ public class DesktopController implements SuDoKuController {
             } // for j
         } // for i
 
+    }
+
+    @Override
+    public void getHint(int row, int col){
+        //punish sound
+        DesktopAudio.getInstance().playPunish();
+
+        //get game data
+
+        String temp = grid.getGameData();
+
+        //count empty spaces
+        int zeroCount = 0;
+
+        for (int i = 0; i < temp.length(); i++){
+            if (temp.charAt(i) == '0'){
+                zeroCount += 1;
+            }
+        }
+
+        //base case, 1 empty space left
+        if (zeroCount == 1){
+            view.confirmHintException();
+        }else{
+
+            hintCounter++;
+            //add timer
+
+            timer.hintPunish();
+
+            grid = game.getSolved();
+            view.setGiven(row, col, grid.getNumber(row, col));
+        }
     }
 
     @Override
@@ -240,16 +276,22 @@ public class DesktopController implements SuDoKuController {
         timer.stopTimer();
 
         if (view.confirmRageQuit()){
+            // Punish them!
+            DesktopAudio.getInstance().playPunish();
             grid = game.getSolved();
             for (int i = 0; i < 9; i++){
                 for (int j = 0; j < 9; j++){
                     view.setGiven(i, j, grid.getNumber(i, j));
                 }
             }
-            view.confirmNewGame();
+            if (view.confirmNewGame()){
+                setNextGame();
+            }
         }else{
             timer.startTimer();
         }
-
     }
+
+
+
 }

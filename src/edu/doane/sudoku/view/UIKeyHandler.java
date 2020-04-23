@@ -59,6 +59,14 @@ public class UIKeyHandler implements EventHandler<KeyEvent> {
                 setNotesOrNormal();
 
                 break;
+            case 'h':
+            case 'H':
+
+                // get hint
+                getHint(c);
+
+                break;
+
             // 1 - 9 sets number or note
             case '1':
             case '2':
@@ -99,6 +107,16 @@ public class UIKeyHandler implements EventHandler<KeyEvent> {
 
                     // get us out of the loop once the note has been set
                     break;
+                }
+            }
+        }
+    }
+
+    private void getHint(char c){
+        for (int row = 0; row < 9; row++){
+            for (int col = 0; col < 9; col++){
+                if(cells[row][col].isSelected()){
+                    controller.getHint(row, col);
                 }
             }
         }

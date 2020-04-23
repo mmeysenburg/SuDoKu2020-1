@@ -12,6 +12,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.AbstractList;
 import java.util.Optional;
 
 /**
@@ -346,16 +347,17 @@ public class SuDoKu extends Application implements SuDoKuUI {
      *
      * @param id   ID number of the completed game.
      * @param time String holding the amount of time taken to win.
+     * @param hintCount int for number of hints used
      */
 
     @Override
-    public void celebrate(int id, String time) {
+    public void celebrate(int id, int hintCount, String time) {
         DesktopAudio.getInstance().playCelebrate();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Winner!");
         alert.setHeaderText(null);
         alert.setContentText("Congratulations! You won game #" +
-                id + " in " + time + "!");
+                id + " in " + time + "!" + "You used " + hintCount + "hints.");
         alert.showAndWait();
     }
 
@@ -405,6 +407,21 @@ public class SuDoKu extends Application implements SuDoKuUI {
         alert.setHeaderText(null);
         alert.setContentText("Do you want to start a new game?");
 
+        Optional<ButtonType> result = alert.showAndWait();
+
+        return result.get() == ButtonType.OK;
+    }
+
+    /**
+     * Function to display if one space left and 'h' key is pressed
+     */
+
+    @Override
+    public boolean confirmHintException(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("CHEATER!!!");
+        alert.setHeaderText(null);
+        alert.setContentText("You cannot use the hint feature on the last problem!");
         Optional<ButtonType> result = alert.showAndWait();
 
         return result.get() == ButtonType.OK;

@@ -62,8 +62,9 @@ public interface SuDoKuUI {
      *
      * @param id   ID number of the completed game.
      * @param time String holding the amount of time taken to win.
+     * @param hintCount int for the amount of hints they used.
      */
-    void celebrate(int id, String time);
+    void celebrate(int id, int hintCount, String time);
 
     /**
      * Confirm that the player really wants to exit the game.
@@ -90,4 +91,6 @@ public interface SuDoKuUI {
      * Display the modal "About Doane SuDoKu" dialog box.
      */
     void displayAbout();
+
+    boolean confirmHintException();
 }
