@@ -67,5 +67,5 @@ public interface SuDoKuController {
 
     void getHint(int row, int col);
 
-
+    void pause();
 }

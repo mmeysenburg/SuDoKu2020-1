@@ -37,6 +37,8 @@ public class DesktopTimer implements SuDoKuTimer {
      * Create a new DesktopTimer object, starting at 0:00:00, and ready to count up
      * by 1 second at a time.
      */
+
+
     public DesktopTimer() {
         elapsedTime = new ElapsedTime();
 
@@ -60,6 +62,7 @@ public class DesktopTimer implements SuDoKuTimer {
     public void hintPunish(){
         elapsedTime.hintPunish();
     }
+
 
     @Override
     public void stopTimer() {

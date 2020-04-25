@@ -93,4 +93,6 @@ public interface SuDoKuUI {
     void displayAbout();
 
     boolean confirmHintException();
+
+    void pauseHide();
 }

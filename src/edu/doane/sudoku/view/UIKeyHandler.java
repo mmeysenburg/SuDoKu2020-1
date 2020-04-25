@@ -67,6 +67,12 @@ public class UIKeyHandler implements EventHandler<KeyEvent> {
 
                 break;
 
+            //pause
+            case 'p':
+            case 'P':
+                pause(c);
+                break;
+
             // 1 - 9 sets number or note
             case '1':
             case '2':
@@ -110,6 +116,10 @@ public class UIKeyHandler implements EventHandler<KeyEvent> {
                 }
             }
         }
+    }
+
+    private void pause(char c){
+        controller.pause();
     }
 
     private void getHint(char c){

@@ -49,6 +49,12 @@ public class UICell extends BorderPane implements EventHandler<MouseEvent> {
     private String num;
 
     /**
+     * are we paused or running
+     */
+
+    private boolean isRunning;
+
+    /**
      * Flag indicating notes mode or normal number mode.
      */
     private boolean notesMode;
@@ -136,6 +142,7 @@ public class UICell extends BorderPane implements EventHandler<MouseEvent> {
         notesMode = false;
         isSelected = false;
         isGiven = false;
+        isRunning = true;
 
         // the class handles its own mouse entry and exit events, to set the
         // background fill color and selectedness of the cell
@@ -225,6 +232,28 @@ public class UICell extends BorderPane implements EventHandler<MouseEvent> {
             lblNotes[i].setVisible(false);
         }
     }
+
+    /**
+     * Hide everything in a cell
+     */
+
+    public void hide(){
+        if(isRunning){
+            lblNumber.setVisible(false);
+            for (int i = 0; i < notes.length; i++){
+                lblNotes[i].setVisible(false);
+            }
+            isRunning = false;
+        }else{
+            lblNumber.setVisible(true);
+            isRunning = true;
+            for (int i = 0; i < notes.length; i++){
+                lblNotes[i].setVisible(true);
+            }
+            clearAllNotes();
+        }
+    }
+
 
     /**
      * Remove the number from a cell.

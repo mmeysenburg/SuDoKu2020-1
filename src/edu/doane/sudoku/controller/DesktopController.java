@@ -16,6 +16,7 @@ import edu.doane.sudoku.view.SuDoKuUI;
  */
 public class DesktopController implements SuDoKuController {
 
+
     /**
      * Reference to the view being controlled by this controller.
      */
@@ -42,6 +43,16 @@ public class DesktopController implements SuDoKuController {
      * or not.
      */
     private boolean celebrated;
+
+    /**
+     * Variable to see if the timer is running or not
+     */
+
+    private boolean isRunning;
+
+    /**
+     * Used to count the number of hints the user has taken
+     */
 
     private int hintCounter;
 
@@ -122,13 +133,14 @@ public class DesktopController implements SuDoKuController {
 
         // confirm new game desire
         if (view.confirmNewGame()) {
-            // move on to next game, reset celbration flag and timer
+            // move on to next game, reset celebration flag and timer
             setNextGame();
             celebrated = false;
             timer.resetTimer();
         }
         // start timer again
         timer.startTimer();
+        isRunning = true;
     }
 
     private void setNextGame() {
@@ -292,6 +304,22 @@ public class DesktopController implements SuDoKuController {
         }
     }
 
-
+    /**
+     * Pause feature:
+     * Check boolean isRunning
+     * if true, then stop timer, set isRunning to false and hide the puzzle
+     * if false, start timer, set isRunning to true and show the puzzle
+     */
+    @Override
+    public void pause(){
+        view.pauseHide();
+        if (isRunning){
+            timer.stopTimer();
+            isRunning = false;
+        }else{
+            timer.startTimer();
+            isRunning = true;
+        }
+    }
 
 }

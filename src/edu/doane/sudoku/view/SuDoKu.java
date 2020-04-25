@@ -403,7 +403,6 @@ public class SuDoKu extends Application implements SuDoKuUI {
     @Override
     public boolean confirmNewGame() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("New game?");
         alert.setHeaderText(null);
         alert.setContentText("Do you want to start a new game?");
 
@@ -440,4 +439,17 @@ public class SuDoKu extends Application implements SuDoKuUI {
         
         alert.showAndWait();
     }
+
+    /**
+     *
+     */
+    @Override
+    public void pauseHide(){
+        for (int row = 0; row < 9; row++){
+            for (int col = 0; col < 9; col++){
+                cells[row][col].hide();
+            }
+        }
+    }
+
 }
