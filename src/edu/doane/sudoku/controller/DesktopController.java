@@ -75,6 +75,8 @@ public class DesktopController implements SuDoKuController {
         // ... and start the clock!
         timer.startTimer();
 
+        isRunning = true;
+
         // we haven't won before we play any numbers!
         celebrated = false;
     }
